@@ -18,24 +18,50 @@ public class MenuManager {
 			System.out.println("6. EXIT");//종료(나가기)
 			System.out.println("Select one number between 1 - 6");
 			num = input.nextInt();
+			if(num == 1) {
+				addStudent();
+			}
+			else if(num ==2) {
+				Deletebooks();
+			}
+			else if(num == 3) {
+				Editbooks();
+			}
+			else if(num ==4) {
+				Viewbooks();
+			}
+			else {
+				continue;
+			}
 			
-			switch(num) {
-			case 1:
-				System.out.println("Type your student ID :");//책을 빌릴 학생의 ID
-				int StudentID = input.nextInt();
-				System.out.println("Type your book's title :");//빌릴 책 이름
-				String booktitle = input.next();
-				System.out.println("Type your book's ID :");//빌릴 책의 ID
-				String bookID = input.next();
-				System.out.println("Enter today's day");//책을 빌릴 오늘의 요일
-				String date = input.next();
-				break;
-			case 2:
-			case 3:
-			case 4:
-				System.out.println("Student ID :");
-				int StudentID2 = input.nextInt();
-		}
+		}	
 	}
+	public static void addStudent() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Student ID");
+		int StudentID = input.nextInt();
+		System.out.print("Book's name");
+		input.nextLine();
+	    String Bookname = input.nextLine();
+		System.out.print("Book's ID");
+		int BookID = input.nextInt();
+		System.out.print("Today's day");
+		String Day = input.next();
 	}
+	public static void Deletebooks() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Student ID");
+		int StudentID = input.nextInt();
+}
+	public static void Editbooks() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Student ID");
+		int StudentID = input.nextInt();
+}
+	public static void Viewbooks() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Student ID");
+		int StudentID = input.nextInt();
+}
+
 }
