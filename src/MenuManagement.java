@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class MenuManagement {
 	public static void main(String[] args) {
 	      Scanner input = new Scanner(System.in);
-	      BookManagement BookManagement = new BookManagement(input);
+	      BookManagement bookManagement = new BookManagement(input);//BookManagement 클래스 객체 선언
 	      int num = 0;
 	      int PW = 1234;
 	      System.out.println("Type the admin PW : ");
@@ -11,7 +11,7 @@ public class MenuManagement {
 	         System.out.println("Wrong Access.");
 	         return;
 	         
-	      }
+	      }//패스워드를 통해 입장
 	      
 	      
 	      while (num !=5) {
@@ -25,21 +25,21 @@ public class MenuManagement {
 	         num = input.nextInt();
 	               
 	         if (num==1){               
-	            BookManagement.addBooks();   
+	            bookManagement.addBooks();   
 	         }
 	         else if(num==2) {
-	            BookManagement.deleteBooks();
+	            bookManagement.deleteBooks();
 	         }
 	         else if(num==3) {
-	            BookManagement.editBooks();
+	            bookManagement.editBooks();
 	         }
 	         else if(num==4) {
-	            BookManagement.viewBooks();
+	            bookManagement.viewBooks();
 	         }
 	         else {
 	            continue;
 	         }
-	      }
+	      }//어떤 항목 고를지 결정
 	   }
 	      
 	      
