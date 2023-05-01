@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Book.Book;
+import Book.FairyTale;
 import Book.Fiction;
+import Book.Thriller;
 
 public class BookManagement {
     ArrayList <Book> Books = new ArrayList<Book>();//book을 담는 배열 books 선언
@@ -16,10 +18,12 @@ public class BookManagement {
     public void addBooks() {
        Book book = new Book();
        int kind = 0;
-       while(kind != 1 && kind != 2) {
+       while(kind != 1 && kind != 2 && kind !=3) {
 	       System.out.println("1 for Romance");
 	       System.out.println("2 for Fiction");
-	       System.out.println("Select num for Book Kind Between 1 and 2"); 
+	       System.out.println("3 for Thriller");
+	       System.out.println("4 for FairyTale");
+	       System.out.println("Select num for Book Kind Between 1 and 4"); 
 	       kind  = input.nextInt();
 	       if( kind == 1) {
 	    	   book = new Book();
@@ -32,9 +36,21 @@ public class BookManagement {
 	    	   book = new Fiction();
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
-	    	   break;
-	    	   
+	    	   break;  
 	       }
+	       else if (kind == 3) {
+	    	   book = new Thriller();
+	    	   book.getUserInput(input);
+	    	   Books.add(book);
+	    	   break;
+	       }
+	       else if (kind == 4) {
+	    	   book = new FairyTale();
+	    	   book.getUserInput(input);
+	    	   Books.add(book);
+	    	   break;
+	       }
+	       
 	       else {
 	    	   System.out.println("Select num for BookKind: ");
 	       }
