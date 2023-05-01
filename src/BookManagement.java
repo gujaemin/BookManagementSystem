@@ -18,7 +18,7 @@ public class BookManagement {
     public void addBooks() {
        Book book = new Book();
        int kind = 0;
-       while(kind != 1 && kind != 2 && kind !=3) {
+       while(kind != 1 && kind != 2 && kind !=3 && kind != 4) {
 	       System.out.println("1 for Romance");
 	       System.out.println("2 for Fiction");
 	       System.out.println("3 for Thriller");
@@ -26,6 +26,7 @@ public class BookManagement {
 	       System.out.println("Select num for Book Kind Between 1 and 4"); 
 	       kind  = input.nextInt();
 	       if( kind == 1) {
+	    	   System.out.println("---Romance---");
 	    	   book = new Book();
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
@@ -33,18 +34,21 @@ public class BookManagement {
 	    	   
 	       }
 	       else if ( kind == 2 ) {
+	    	   System.out.println("---Fiction---");
 	    	   book = new Fiction();
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;  
 	       }
 	       else if (kind == 3) {
+	    	   System.out.println("---Thriller---");
 	    	   book = new Thriller();
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;
 	       }
 	       else if (kind == 4) {
+	    	   System.out.println("---FairyTale---");
 	    	   book = new FairyTale();
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
@@ -128,7 +132,7 @@ public class BookManagement {
     public void viewBooks() {
     System.out.println(Books.size() + "권");
     for(Book book : Books ) {
-       System.out.println(book.printInfo());
+       System.out.println(book.printInfo(book));
     }
     
  }//지금까지 입력한 책 출력

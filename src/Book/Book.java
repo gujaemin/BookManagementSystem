@@ -56,8 +56,8 @@ public class Book {
    public int getBookId() {
       return BookId;
    }
-   public String printInfo() {
-      return "Book{Title : " + Title +" Author : "+ Author+" Publisher : "+ Publisher+" BookId : "+BookId+"}";
+   public String printInfo(Book book) {
+      return "Book{Genre : " + book.kind + " Title : " + Title +" Author : "+ Author+" Publisher : "+ Publisher+" BookId : "+BookId+"}";
    }//인스턴스 변수 값 반환 메소드
    public void getUserInput(Scanner input) {
 	   
