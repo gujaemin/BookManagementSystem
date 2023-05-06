@@ -3,6 +3,9 @@ package Book;
 import java.util.Scanner;
 
 public class Fiction extends Book {
+	   public Fiction(BookKind kind) {
+		   this.kind = kind;
+	   }
 	public void getUserInput(Scanner input) {
 		   
 		   System.out.println("Type the book's Title : ");
@@ -38,6 +41,8 @@ public class Fiction extends Book {
 	       System.out.println("Type the book's Id : ");
 	       int bookId = input.nextInt();
 	       this.setBookId(bookId);
+	       
+	       
 	   }
 
 }

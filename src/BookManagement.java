@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Book.Book;
+import Book.BookKind;
 import Book.FairyTale;
 import Book.Fiction;
 import Book.Thriller;
@@ -26,30 +27,34 @@ public class BookManagement {
 	       System.out.println("Select num for Book Kind Between 1 and 4"); 
 	       kind  = input.nextInt();
 	       if( kind == 1) {
+			   
 	    	   System.out.println("---Romance---");
-	    	   book = new Book();
+	    	   book = new Book(BookKind.Romance);
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;
 	    	   
 	       }
 	       else if ( kind == 2 ) {
+
 	    	   System.out.println("---Fiction---");
-	    	   book = new Fiction();
+	    	   book = new Fiction(BookKind.Fiction);
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;  
 	       }
 	       else if (kind == 3) {
+
 	    	   System.out.println("---Thriller---");
-	    	   book = new Thriller();
+	    	   book = new Thriller(BookKind.Thriller);
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;
 	       }
 	       else if (kind == 4) {
+	    	 
 	    	   System.out.println("---FairyTale---");
-	    	   book = new FairyTale();
+	    	   book = new FairyTale(BookKind.FairyTale);
 	    	   book.getUserInput(input);
 	    	   Books.add(book);
 	    	   break;
@@ -132,7 +137,7 @@ public class BookManagement {
     public void viewBooks() {
     System.out.println(Books.size() + "권");
     for(Book book : Books ) {
-       System.out.println(book.printInfo(book));
+       book.printInfo();
     }
     
  }//지금까지 입력한 책 출력

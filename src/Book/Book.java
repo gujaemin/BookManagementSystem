@@ -14,13 +14,23 @@ public class Book {
    public Book() {
       
    }
+   public Book(BookKind kind) {
+	   this.kind = kind;
+   }
 
    public Book(String Title, String Author, String Publisher, int BookId) {
       this.Title = Title;
       this.Author = Author;
       this.Publisher = Publisher;
       this.BookId = BookId;      
-   }//생성자
+   }
+   public Book(BookKind kind, String Title, String Author, String Publisher, int BookId) {
+	  this.kind = kind;
+	  this.Title = Title;
+	  this.Author = Author;
+	  this.Publisher = Publisher;
+	  this.BookId = BookId;      
+	   }//생성자
    public BookKind getKind() {
 		return kind;
 	}
@@ -56,9 +66,30 @@ public class Book {
    public int getBookId() {
       return BookId;
    }
-   public String printInfo(Book book) {
-      return "Book{Genre : " + book.kind + " Title : " + Title +" Author : "+ Author+" Publisher : "+ Publisher+" BookId : "+BookId+"}";
-   }//인스턴스 변수 값 반환 메소드
+  
+   public void printInfo() {
+	   String skind = "none";
+	   switch(this.kind) {
+	   case Romance :
+		   skind = "Romance";
+		   break;
+	   case Fiction :
+		   skind = "Fiction";
+		   break;
+	   
+	   case Thriller :
+		   skind = "Thriller";
+		   break;
+		   
+	   case FairyTale :
+		   skind = "FairyTale";
+		   break;
+	   default :
+		   
+	   }
+       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tBookId : "+BookId+"}");
+	   }
+   	//인스턴스 변수 값 반환 메소드
    public void getUserInput(Scanner input) {
 	   
 	   System.out.println("Type the book's Title : ");
