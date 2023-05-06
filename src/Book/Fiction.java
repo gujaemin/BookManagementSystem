@@ -3,6 +3,8 @@ package Book;
 import java.util.Scanner;
 
 public class Fiction extends Book {
+	   int FictionType;
+	   String type;
 	   public Fiction(BookKind kind) {
 		   this.kind = kind;
 	   }
@@ -38,11 +40,48 @@ public class Fiction extends Book {
 	       String publisher = input.next();
 	       this.setPublisher(publisher);
 	       
+	       System.out.println("Type the Fiction's Type ");
+	       System.out.println("1 : fantasy 2 : science 3 : mystery");
+	       FictionType = input.nextInt();
+	       switch (FictionType){
+	       case 1 :
+	    	   type = "fantasy";
+	    	   break;
+	       case 2 :
+	    	   type = "science";
+	    	   break;
+	       case 3 :
+	    	   type = "mystery";
+	    	   break;
+	       default :
+	       }
+	       
 	       System.out.println("Type the book's Id : ");
 	       int bookId = input.nextInt();
 	       this.setBookId(bookId);
-	       
-	       
+   
 	   }
+	 public void printInfo() {
+		   String skind = "none";
+		   switch(this.kind) {
+		   case Romance :
+			   skind = "Romance";
+			   break;
+		   case Fiction :
+			   skind = "Fiction";
+			   break;
+		   
+		   case Thriller :
+			   skind = "Thriller";
+			   break;
+			   
+		   case FairyTale :
+			   skind = "FairyTale";
+			   break;
+		   default :
+			   
+		   }
+	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFiction's Type : " +type + "\tBookId : "+BookId+"}");
+		   }	
 
 }

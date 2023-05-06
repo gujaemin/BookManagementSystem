@@ -3,6 +3,8 @@ package Book;
 import java.util.Scanner;
 
 public class Thriller extends Book {
+	   int ThrillerType;
+	   String type;
 	   public Thriller(BookKind kind) {
 		   this.kind = kind;
 	   }
@@ -33,11 +35,24 @@ public class Thriller extends Book {
 	       }
 	       }
 	       
-	       
-	       
 	       System.out.println("Type the book's Publisher : ");
 	       String publisher = input.next();
 	       this.setPublisher(publisher);
+	       
+	       System.out.println("Type the Thriller's Type ");
+	       System.out.println("1 : Psychological Thriller 2 : Crime Thriller 3 : Supernatural Thriller");
+	       ThrillerType = input.nextInt();
+	       switch (ThrillerType){
+	       case 1 :
+	    	   type = "Psychological Thriller";
+	    	   break;
+	       case 2 :
+	    	   type = "Crime Thriller";
+	    	   break;
+	       case 3 :
+	    	   type = "Supernatural Thriller";
+	       default :
+	       }
 	       
 	       System.out.println("Type the book's Id : ");
 	       int bookId = input.nextInt();
@@ -45,6 +60,29 @@ public class Thriller extends Book {
 	       
 	       
 	   }
+	public void printInfo() {
+		   String skind = "none";
+		   switch(this.kind) {
+		   case Romance :
+			   skind = "Romance";
+			   break;
+		   case Fiction :
+			   skind = "Fiction";
+			   break;
+		   
+		   case Thriller :
+			   skind = "Thriller";
+			   break;
+			   
+		   case FairyTale :
+			   skind = "FairyTale";
+			   break;
+		   default :
+			   
+		   }
+	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tThriller's Type : " +type + "\tBookId : "+BookId+"}");
+		   }	
+
 
 
 }

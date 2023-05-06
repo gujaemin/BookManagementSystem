@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class FairyTale extends Book {
 	   int FairyTaleType;
-	   String Type;
+	   String type;
 	   public FairyTale(BookKind kind) {
 		   this.kind = kind;
 	   }
@@ -34,9 +34,7 @@ public class FairyTale extends Book {
 	    	   
 	       }
 	       }
-	       
-	       
-	       
+
 	       System.out.println("Type the book's Publisher : ");
 	       String publisher = input.next();
 	       this.setPublisher(publisher);
@@ -46,10 +44,10 @@ public class FairyTale extends Book {
 	       FairyTaleType = input.nextInt();
 	       switch (FairyTaleType){
 	       case 1 :
-	    	   Type = "forktale";
+	    	   type = "forktale";
 	    	   break;
 	       case 2 :
-	    	   Type = "original fairy tales";
+	    	   type = "original fairy tales";
 	    	   break;
 	       default :
 	       }
@@ -80,7 +78,7 @@ public class FairyTale extends Book {
 		   default :
 			   
 		   }
-	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFairyTaltType : " +Type + "\tBookId : "+BookId+"}");
+	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFairyTale's Type : " +type + "\tBookId : "+BookId+"}");
 		   }	
 	       
 	   }
