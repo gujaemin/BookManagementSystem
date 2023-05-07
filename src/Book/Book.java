@@ -3,7 +3,7 @@ package Book;
 import java.util.Scanner;
 
 public class Book {
-	protected BookKind kind = BookKind.Romance;
+	protected BookKind kind;
 	protected String Title;
 	protected String Author;
 	protected String Publisher;
