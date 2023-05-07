@@ -82,7 +82,4 @@ public class Thriller extends Book {
 		   }
 	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tThriller's Type : " +type + "\tBookId : "+BookId+"}");
 		   }	
-
-
-
 }

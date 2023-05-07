@@ -33,9 +33,6 @@ public class Fiction extends Book {
 	    	   
 	       }
 	       }
-	       
-	       
-	       
 	       System.out.println("Type the book's Publisher : ");
 	       String publisher = input.next();
 	       this.setPublisher(publisher);
@@ -61,6 +58,7 @@ public class Fiction extends Book {
 	       this.setBookId(bookId);
    
 	   }
+	
 	 public void printInfo() {
 		   String skind = "none";
 		   switch(this.kind) {
