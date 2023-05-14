@@ -1,13 +1,14 @@
 package Book;
 
 import java.util.Scanner;
-
+//Book 클래스를 상속, 인터페이스 BookInput 구현
 public class Romance extends Book implements BookInput {
 	   int RomanceType;
 	   String type;
 	   public Romance(BookKind kind) {
 		   this.kind = kind;
 	   }
+	   //BookInput 인터페이스 메서드 구현
 		public void getUserInput(Scanner input) {
 			   
 			   System.out.println("Type the book's Title : ");
@@ -15,6 +16,7 @@ public class Romance extends Book implements BookInput {
 		       this.setTitle(title);
 		       
 		       char answer = 'x';
+		       //작가 정보 입력 여부를 묻는 반복문
 		       while(answer !=  'y' && answer != 'Y' && answer !=  'n' && answer != 'N') 
 		       {
 		    	   System.out.println("Is the author of this book known? (Y/N)");
@@ -37,7 +39,7 @@ public class Romance extends Book implements BookInput {
 		       String publisher = input.next();
 		       this.setPublisher(publisher);
 		       
-		       System.out.println("Type the Fiction's Type ");
+		       System.out.println("Type the Romance's Type ");
 		       System.out.println("1 : Historical Romance 2 : Contemporary Romance 3 : Paranormal Romance");
 		       RomanceType = input.nextInt();
 		       switch (RomanceType){
@@ -80,5 +82,4 @@ public class Romance extends Book implements BookInput {
 			   }
 		       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tRomance's Type : " +type + "\tBookId : "+BookId+"}");
 			   }	
-
 	}

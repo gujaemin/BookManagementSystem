@@ -79,7 +79,6 @@ public class FairyTale extends Book implements BookInput{
 			   
 		   }
 	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFairyTale's Type : " +type + "\tBookId : "+BookId+"}");
-		   }	
-	       
+		   }	 
 	   }
 

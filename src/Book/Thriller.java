@@ -1,7 +1,5 @@
 package Book;
-
 import java.util.Scanner;
-
 public class Thriller extends Book implements BookInput{
 	   int ThrillerType;
 	   String type;

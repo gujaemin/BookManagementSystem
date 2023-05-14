@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import Book.BookInput;
 import Book.BookInput;
 import Book.BookKind;
@@ -10,13 +9,11 @@ import Book.Romance;
 import Book.Thriller;
 
 public class BookManagement {
-    ArrayList <BookInput> Books = new ArrayList<BookInput>();//book을 담는 배열 books 선언
+    ArrayList <BookInput> Books = new ArrayList<BookInput>();//BookInput을 ArrayList로 관리
     Scanner input;
-    
     BookManagement(Scanner input){
        this.input = input;
-       
-    }//생성자
+    }// 생성자
  
     public void addBooks() {
        BookInput bookInput;
@@ -29,13 +26,11 @@ public class BookManagement {
 	       System.out.println("Select num for Book Kind Between 1 and 4"); 
 	       kind  = input.nextInt();
 	       if( kind == 1) {
-			   
 	    	   System.out.println("---Romance---");
 	    	   bookInput = new Romance(BookKind.Romance);
 	    	   bookInput.getUserInput(input);
 	    	   Books.add(bookInput);
 	    	   break;
-	    	   
 	       }
 	       else if ( kind == 2 ) {
 
@@ -130,10 +125,8 @@ public class BookManagement {
                 else {
                    break;
                 }
-             }//while문으로 어떤 항목 edit할지 결정 및 수정
-             
+             }
           }
-          
        }
     }//edit 함수
     public void viewBooks() {
@@ -141,6 +134,5 @@ public class BookManagement {
     for(BookInput bookInput : Books ) {
        bookInput.printInfo();
     }
-    
- }//지금까지 입력한 책 출력
+ }
 }

@@ -66,10 +66,6 @@ public abstract class Book {
    public int getBookId() {
       return BookId;
    }
-  
-   public abstract void printInfo();
-
-   	//인스턴스 변수 값 반환 메소드
-  
+   public abstract void printInfo(); //추상 메소드 printInfo 정의
 }
  

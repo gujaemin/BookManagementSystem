@@ -5,5 +5,4 @@ public enum BookKind {
 	Fiction,
 	Thriller,
 	FairyTale;
-
 }

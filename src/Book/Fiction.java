@@ -1,5 +1,4 @@
 package Book;
-
 import java.util.Scanner;
 
 public class Fiction extends Book implements BookInput {
@@ -81,5 +80,4 @@ public class Fiction extends Book implements BookInput {
 		   }
 	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFiction's Type : " +type + "\tBookId : "+BookId+"}");
 		   }	
-
 }
