@@ -2,7 +2,7 @@ package Book;
 
 import java.util.Scanner;
 
-public class Book {
+public abstract class Book {
 	protected BookKind kind;
 	protected String Title;
 	protected String Author;
@@ -67,43 +67,9 @@ public class Book {
       return BookId;
    }
   
-   public void printInfo() {
-	   String skind = "none";
-	   switch(this.kind) {
-	   case Romance :
-		   skind = "Romance";
-		   break;
-	   case Fiction :
-		   skind = "Fiction";
-		   break;
-	   
-	   case Thriller :
-		   skind = "Thriller";
-		   break;
-		   
-	   case FairyTale :
-		   skind = "FairyTale";
-		   break;
-	   default :
-		   
-	   }
-       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tBookId : "+BookId+"}");
-	   }
+   public abstract void printInfo();
+
    	//인스턴스 변수 값 반환 메소드
-   public void getUserInput(Scanner input) {
-	   
-	   System.out.println("Type the book's Title : ");
-       String title = input.next();
-       this.setTitle(title);
-       System.out.println("Type the book's Author : ");
-       String author = input.next();
-       this.setAuthor(author);
-       System.out.println("Type the book's Publisher : ");
-       String publisher = input.next();
-       this.setPublisher(publisher);
-       System.out.println("Type the book's Id : ");
-       int bookId = input.nextInt();
-       this.setBookId(bookId);
-   }
+  
 }
  

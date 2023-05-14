@@ -2,7 +2,7 @@ package Book;
 
 import java.util.Scanner;
 
-public class FairyTale extends Book {
+public class FairyTale extends Book implements BookInput{
 	   int FairyTaleType;
 	   String type;
 	   public FairyTale(BookKind kind) {
@@ -40,14 +40,14 @@ public class FairyTale extends Book {
 	       this.setPublisher(publisher);
 	       
 	       System.out.println("Type the FairyTale's Type ");
-	       System.out.println("1 : folktale 2 : original fairy tales");
+	       System.out.println("1 : Folktale 2 : Original Fairytales");
 	       FairyTaleType = input.nextInt();
 	       switch (FairyTaleType){
 	       case 1 :
-	    	   type = "forktale";
+	    	   type = "Forktale";
 	    	   break;
 	       case 2 :
-	    	   type = "original fairy tales";
+	    	   type = "Original Fairytales";
 	    	   break;
 	       default :
 	       }

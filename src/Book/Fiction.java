@@ -2,7 +2,7 @@ package Book;
 
 import java.util.Scanner;
 
-public class Fiction extends Book {
+public class Fiction extends Book implements BookInput {
 	   int FictionType;
 	   String type;
 	   public Fiction(BookKind kind) {
@@ -38,17 +38,17 @@ public class Fiction extends Book {
 	       this.setPublisher(publisher);
 	       
 	       System.out.println("Type the Fiction's Type ");
-	       System.out.println("1 : fantasy 2 : science 3 : mystery");
+	       System.out.println("1 : Fantasy Fiction 2 : Science Fiction 3 : Mystery Fiction");
 	       FictionType = input.nextInt();
 	       switch (FictionType){
 	       case 1 :
-	    	   type = "fantasy";
+	    	   type = "Fantasy Fiction ";
 	    	   break;
 	       case 2 :
-	    	   type = "science";
+	    	   type = "Science Ficiton";
 	    	   break;
 	       case 3 :
-	    	   type = "mystery";
+	    	   type = "Mystery Fitcion";
 	    	   break;
 	       default :
 	       }

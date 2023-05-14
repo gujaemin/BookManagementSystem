@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Book.Book;
+import Book.BookInput;
+import Book.BookInput;
 import Book.BookKind;
 import Book.FairyTale;
 import Book.Fiction;
+import Book.Romance;
 import Book.Thriller;
 
 public class BookManagement {
-    ArrayList <Book> Books = new ArrayList<Book>();//book을 담는 배열 books 선언
+    ArrayList <BookInput> Books = new ArrayList<BookInput>();//book을 담는 배열 books 선언
     Scanner input;
     
     BookManagement(Scanner input){
@@ -17,7 +19,7 @@ public class BookManagement {
     }//생성자
  
     public void addBooks() {
-       Book book = new Book();
+       BookInput bookInput;
        int kind = 0;
        while(kind != 1 && kind != 2 && kind !=3 && kind != 4) {
 	       System.out.println("1 for Romance");
@@ -29,34 +31,34 @@ public class BookManagement {
 	       if( kind == 1) {
 			   
 	    	   System.out.println("---Romance---");
-	    	   book = new Book(BookKind.Romance);
-	    	   book.getUserInput(input);
-	    	   Books.add(book);
+	    	   bookInput = new Romance(BookKind.Romance);
+	    	   bookInput.getUserInput(input);
+	    	   Books.add(bookInput);
 	    	   break;
 	    	   
 	       }
 	       else if ( kind == 2 ) {
 
 	    	   System.out.println("---Fiction---");
-	    	   book = new Fiction(BookKind.Fiction);
-	    	   book.getUserInput(input);
-	    	   Books.add(book);
+	    	   bookInput = new Fiction(BookKind.Fiction);
+	    	   bookInput.getUserInput(input);
+	    	   Books.add(bookInput);
 	    	   break;  
 	       }
 	       else if (kind == 3) {
 
 	    	   System.out.println("---Thriller---");
-	    	   book = new Thriller(BookKind.Thriller);
-	    	   book.getUserInput(input);
-	    	   Books.add(book);
+	    	   bookInput = new Thriller(BookKind.Thriller);
+	    	   bookInput.getUserInput(input);
+	    	   Books.add(bookInput);
 	    	   break;
 	       }
 	       else if (kind == 4) {
 	    	 
 	    	   System.out.println("---FairyTale---");
-	    	   book = new FairyTale(BookKind.FairyTale);
-	    	   book.getUserInput(input);
-	    	   Books.add(book);
+	    	   bookInput = new FairyTale(BookKind.FairyTale);
+	    	   bookInput.getUserInput(input);
+	    	   Books.add(bookInput);
 	    	   break;
 	       }
 	       
@@ -94,8 +96,8 @@ public class BookManagement {
        System.out.println("Type the book's Id : ");
        int BookId = input.nextInt();
        for(int n=0; n<Books.size();n++) {
-          Book book = Books.get(n);
-          if (book.getBookId() == BookId) {
+          BookInput bookInput = Books.get(n);
+          if (bookInput.getBookId() == BookId) {
              int num = 0;
              while (num !=5) {
                 System.out.println("### Book's Info Edit Menu ###");
@@ -108,22 +110,22 @@ public class BookManagement {
                 if (num ==1) {
                    System.out.print("Type Title : ");
                    String title = input.next();
-                   book.setTitle(title);
+                   bookInput.setTitle(title);
                 }
                 else if (num ==2) {
                    System.out.print("Type Author : ");
                    String author = input.next();
-                   book.setAuthor(author);
+                   bookInput.setAuthor(author);
                 }	
                 else if (num ==3) {
                    System.out.print("Type Publisher : ");
                    String publisher = input.next();
-                   book.setPublisher(publisher);
+                   bookInput.setPublisher(publisher);
                 }
                 else if (num ==4) {
                    System.out.print("Type Book's Id : ");
                    int bookId = input.nextInt();
-                   book.setBookId(bookId);
+                   bookInput.setBookId(bookId);
                 }
                 else {
                    break;
@@ -136,8 +138,8 @@ public class BookManagement {
     }//edit 함수
     public void viewBooks() {
     System.out.println(Books.size() + "권");
-    for(Book book : Books ) {
-       book.printInfo();
+    for(BookInput bookInput : Books ) {
+       bookInput.printInfo();
     }
     
  }//지금까지 입력한 책 출력
