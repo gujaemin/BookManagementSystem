@@ -66,73 +66,100 @@ public class BookManagement {
     }//addBooks 함수
     public void deleteBooks() {
        System.out.println("Type the book's Id : ");
-        int Bookid = input.nextInt();
-       int index = -1;
-        if(Books == null) {
-          System.out.println("no Books Added");
-       }
-       for(int i=0; i<Books.size();i++) {
-          if (Books.get(i).getBookId() == Bookid) {
-             index = i;
-             break;
-          }
-       }//찾는 id가 있는지 확인
-       if (index>=0) {
-       Books.remove(index);
-       System.out.println("The Book " +Bookid+ " is deleted.");
-       }
-       else {
-          System.out.print("no Books Added");
-          return; 
-       }//id가 있으면 삭제, 없을시 오류 출력
+        int bookId = input.nextInt();
+        int index = findIndex(bookId);
+         index = findIndex(bookId);
+         removefromBooks(index,bookId);
+    }
+    public int findIndex(int bookId) {
+    	int index = -1;
+        for(int i=0; i<Books.size();i++) {
+            if (Books.get(i).getBookId() == bookId) {
+               index  = i;
+               break;
+            }
+         }
+        return index;
+    }
+    public int removefromBooks(int index, int bookId) {
+    	//찾는 id가 있는지 확인
+        if (index>=0) {
+        Books.remove(index);
+        System.out.println("The Book " +bookId+ " is deleted.");
+        return 1;
+        }
+        else {
+           System.out.println("no Books Added");
+           return -1; 
+        }//id가 있으면 삭제, 없을시 오류 출력
+    	
     }
     
     public void editBooks() {
        System.out.println("Type the book's Id : ");
        int BookId = input.nextInt();
        for(int n=0; n<Books.size();n++) {
-          BookInput bookInput = Books.get(n);
-          if (bookInput.getBookId() == BookId) {
+          BookInput book = Books.get(n);
+          if (book.getBookId() == BookId) {
              int num = 0;
              while (num !=5) {
-                System.out.println("### Book's Info Edit Menu ###");
-                System.out.println("1. Edit Title");
-                System.out.println("2. Edit Author");
-                System.out.println("3. Edit Publisher");
-                System.out.println("4. Edit Book's Id");
-                System.out.println("5. Exit");
+            	showEditBooks();
                 num = input.nextInt();
-                if (num ==1) {
-                   System.out.print("Type Title : ");
-                   String title = input.next();
-                   bookInput.setTitle(title);
-                }
-                else if (num ==2) {
-                   System.out.print("Type Author : ");
-                   String author = input.next();
-                   bookInput.setAuthor(author);
-                }	
-                else if (num ==3) {
-                   System.out.print("Type Publisher : ");
-                   String publisher = input.next();
-                   bookInput.setPublisher(publisher);
-                }
-                else if (num ==4) {
-                   System.out.print("Type Book's Id : ");
-                   int bookId = input.nextInt();
-                   bookInput.setBookId(bookId);
-                }
-                else {
-                   break;
-                }
-             }
-          }
-       }
+                switch(num) {
+                case 1:
+                	setBookTitle(book,input);
+                	break;
+                case 2:
+                	setBookAuthor(book,input);
+                	break;
+                case 3:
+                	setBookPublisher(book,input);
+                	break;
+                case 4:
+                	setBookId(book,input);
+                	break;
+                default:
+                	continue;
+                }//switch
+             }//while
+          }//if
+       }//for
+   	  System.out.println("번호에 맞는 책이 없어요!!");
     }//edit 함수
+    public void setBookTitle(BookInput book, Scanner input) {
+    	System.out.print("Type Title : ");
+        String title = input.next();
+        book.setTitle(title);	
+    }
+    public void setBookAuthor(BookInput book, Scanner input) {
+    	System.out.print("Type Author : ");
+        String author = input.next();
+        book.setAuthor(author);	
+    }
+    public void setBookPublisher(BookInput book, Scanner input) {
+    	 System.out.print("Type Publisher : ");
+         String publisher = input.next();
+         book.setPublisher(publisher);
+    }
+    public void setBookId(BookInput book, Scanner input) {
+    	System.out.print("Type Book's Id : ");
+        int bookId = input.nextInt();
+        book.setBookId(bookId);
+    }
+
     public void viewBooks() {
     System.out.println(Books.size() + "권");
     for(BookInput bookInput : Books ) {
        bookInput.printInfo();
     }
  }
+    public void showEditBooks() {
+        System.out.println("### Book's Info Edit Menu ###");
+        System.out.println("1. Edit Title");
+        System.out.println("2. Edit Author");
+        System.out.println("3. Edit Publisher");
+        System.out.println("4. Edit Book's Id");
+        System.out.println("5. Exit");
+    	
+    }
 }
