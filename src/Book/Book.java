@@ -1,8 +1,11 @@
 package Book;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Book {
+import exception.PubFormatException;
+
+public abstract class Book implements BookInput {
 	protected BookKind kind;
 	protected String Title;
 	protected String Author;
@@ -47,11 +50,14 @@ public abstract class Book {
 		Author = author;
 	}
 
-	public void setPublisher(String publisher) {
-		Publisher = publisher;
+	public void setPublisher(String publisher) throws PubFormatException {
+		if(!publisher.contains("출판사")&& !publisher.equals("")) {
+			throw new PubFormatException();
+		}
+		this.Publisher = publisher;
 	}
 
-	public void setBookId(int bookId) {
+	public void setId(int bookId) {
 		BookId = bookId;
 	}
    public String getTitle() {
@@ -66,6 +72,77 @@ public abstract class Book {
    public int getBookId() {
       return BookId;
    }
-   public abstract void printInfo(); //추상 메소드 printInfo 정의
+   public void setBookTitle(Scanner input) {
+   	System.out.print("Type Title : ");
+       String title = input.next();
+       this.setTitle(title);	
+   }
+   public void setBookAuthor(Scanner input) {
+   	System.out.print("Type Author : ");
+       String author = input.next();
+       this.setAuthor(author);	
+   }
+   public void setBookPublisher(Scanner input) {
+	 String publisher = "";
+	 while(!publisher.contains("출판사")) {
+	   	 	System.out.print("Type Publisher : ");
+	        publisher = input.next();
+	        try {
+				this.setPublisher(publisher);
+			} catch (PubFormatException e) {
+				System.out.println("부정확한 출판사 이릅입니다! @@출판사 형식으로 써주세요");
+			}
+	 }
+   }
+   public void setBookId(Scanner input) {
+   	System.out.print("Type Book's Id : ");
+       int bookId = input.nextInt();
+       this.setId(bookId);
+   }
+   public void checkAuthorKnown(Scanner input) {
+	    boolean isValidInput = false;
+	    
+	    while (!isValidInput) {
+	        try {
+	            System.out.println("Is the author of this book known? (Y/N)");
+	            char answer = input.next().charAt(0);
+	            
+	            if (answer == 'y' || answer == 'Y') {
+	                setBookAuthor(input);
+	                isValidInput = true;
+	            } else if (answer == 'n' || answer == 'N') {
+	                this.setAuthor("");
+	                isValidInput = true;
+	            } else {
+	                throw new InputMismatchException();
+	            }
+	        } catch (InputMismatchException e) {
+	            System.out.println("Invalid input. Please enter 'Y, y' or 'N, n'.");
+	            continue; // Restart the loop to receive input again
+	        }
+	    }
+	}
+
+   public String getKindString() {
+	   String skind = "none";
+	   switch(this.kind) {
+	   case Romance :
+		   skind = "Romance";
+		   break;
+	   case Fiction :
+		   skind = "Fiction";
+		   break;
+	   
+	   case Thriller :
+		   skind = "Thriller";
+		   break;
+		   
+	   case FairyTale :
+		   skind = "FairyTale";
+		   break;
+	   default :			   
+	   }
+	   return skind;
+  }
 }
  

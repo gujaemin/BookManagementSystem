@@ -1,6 +1,6 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import Book.BookInput;
 import Book.BookInput;
 import Book.BookKind;
 import Book.FairyTale;
@@ -16,54 +16,73 @@ public class BookManagement {
     }// 생성자
  
     public void addBooks() {
-       BookInput bookInput;
+       BookInput bookInput = null;
        int kind = 0;
-       while(kind != 1 && kind != 2 && kind !=3 && kind != 4) {
-	       System.out.println("1 for Romance");
-	       System.out.println("2 for Fiction");
-	       System.out.println("3 for Thriller");
-	       System.out.println("4 for FairyTale");
-	       System.out.println("Select num for Book Kind Between 1 and 4"); 
+       while(kind < 1 || kind > 4) {
+    	   try {
+    	   showaddBooks();
 	       kind  = input.nextInt();
-	       if( kind == 1) {
-	    	   System.out.println("---Romance---");
-	    	   bookInput = new Romance(BookKind.Romance);
-	    	   bookInput.getUserInput(input);
-	    	   Books.add(bookInput);
+	       switch(kind) {
+	       case 1:
+	    	   setRomance(bookInput);
 	    	   break;
-	       }
-	       else if ( kind == 2 ) {
-
-	    	   System.out.println("---Fiction---");
-	    	   bookInput = new Fiction(BookKind.Fiction);
-	    	   bookInput.getUserInput(input);
-	    	   Books.add(bookInput);
-	    	   break;  
-	       }
-	       else if (kind == 3) {
-
-	    	   System.out.println("---Thriller---");
-	    	   bookInput = new Thriller(BookKind.Thriller);
-	    	   bookInput.getUserInput(input);
-	    	   Books.add(bookInput);
-	    	   break;
-	       }
-	       else if (kind == 4) {
-	    	 
-	    	   System.out.println("---FairyTale---");
-	    	   bookInput = new FairyTale(BookKind.FairyTale);
-	    	   bookInput.getUserInput(input);
-	    	   Books.add(bookInput);
-	    	   break;
-	       }
 	       
-	       else {
+	       case 2:
+	    	   setFiction(bookInput);
+	    	   break;
+	       case 3:
+	    	   setThriller(bookInput);
+	    	   break;
+	       case 4:
+	    	   setFairyTale(bookInput);
+	    	   break;
+	       default:
 	    	   System.out.println("Select num for BookKind: ");
 	       }
-       
+    	   }
+    	   catch(InputMismatchException e) {
+    		   System.out.println("1~4사이의 값을 입력해주세요!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
+    		   
+    	   }
        }
-  
     }//addBooks 함수
+    public void showaddBooks() {
+    	System.out.println("1 for Romance");
+	    System.out.println("2 for Fiction");
+	    System.out.println("3 for Thriller");
+	    System.out.println("4 for FairyTale");
+	    System.out.println("Select num for Book Kind Between 1 and 4"); 
+    }
+    public void setRomance(BookInput bookInput) {
+       System.out.println("---Romance---");
+ 	   bookInput = new Romance(BookKind.Romance);
+ 	   bookInput.getUserInput(input);
+ 	   Books.add(bookInput);
+    }
+    public void setFiction(BookInput bookInput) {
+       System.out.println("---Fiction---");
+  	   bookInput = new Fiction(BookKind.Fiction);
+  	   bookInput.getUserInput(input);
+  	   Books.add(bookInput);
+    	
+    }
+    public void setThriller(BookInput bookInput) {
+       System.out.println("---Thriller---");
+ 	   bookInput = new Thriller(BookKind.Thriller);
+ 	   bookInput.getUserInput(input);
+ 	   Books.add(bookInput);
+    }
+    public void setFairyTale(BookInput bookInput) {
+       System.out.println("---FairyTale---");
+ 	   bookInput = new FairyTale(BookKind.FairyTale);
+ 	   bookInput.getUserInput(input);
+ 	   Books.add(bookInput);
+    	
+    }
     public void deleteBooks() {
        System.out.println("Type the book's Id : ");
         int bookId = input.nextInt();
@@ -107,45 +126,26 @@ public class BookManagement {
                 num = input.nextInt();
                 switch(num) {
                 case 1:
-                	setBookTitle(book,input);
+                	book.setBookTitle(input);
                 	break;
                 case 2:
-                	setBookAuthor(book,input);
+                	book.setBookAuthor(input);
                 	break;
                 case 3:
-                	setBookPublisher(book,input);
+                	book.setBookPublisher(input);
                 	break;
                 case 4:
-                	setBookId(book,input);
+                	book.setBookId(input);
                 	break;
                 default:
                 	continue;
                 }//switch
              }//while
           }//if
-       }//for
+       }//for 
    	  System.out.println("번호에 맞는 책이 없어요!!");
     }//edit 함수
-    public void setBookTitle(BookInput book, Scanner input) {
-    	System.out.print("Type Title : ");
-        String title = input.next();
-        book.setTitle(title);	
-    }
-    public void setBookAuthor(BookInput book, Scanner input) {
-    	System.out.print("Type Author : ");
-        String author = input.next();
-        book.setAuthor(author);	
-    }
-    public void setBookPublisher(BookInput book, Scanner input) {
-    	 System.out.print("Type Publisher : ");
-         String publisher = input.next();
-         book.setPublisher(publisher);
-    }
-    public void setBookId(BookInput book, Scanner input) {
-    	System.out.print("Type Book's Id : ");
-        int bookId = input.nextInt();
-        book.setBookId(bookId);
-    }
+  
 
     public void viewBooks() {
     System.out.println(Books.size() + "권");

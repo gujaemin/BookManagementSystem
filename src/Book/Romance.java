@@ -1,8 +1,9 @@
 package Book;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //Book 클래스를 상속, 인터페이스 BookInput 구현
-public class Romance extends Book implements BookInput {
+public class Romance extends Book{
 	   int RomanceType;
 	   String type;
 	   public Romance(BookKind kind) {
@@ -11,75 +12,46 @@ public class Romance extends Book implements BookInput {
 	   //BookInput 인터페이스 메서드 구현
 		public void getUserInput(Scanner input) {
 			   
-			   System.out.println("Type the book's Title : ");
-		       String title = input.next();
-		       this.setTitle(title);
-		       
-		       char answer = 'x';
-		       //작가 정보 입력 여부를 묻는 반복문
-		       while(answer !=  'y' && answer != 'Y' && answer !=  'n' && answer != 'N') 
-		       {
-		    	   System.out.println("Is the author of this book known? (Y/N)");
-		    	   answer = input.next().charAt(0);
-		    	   if(answer == 'y' || answer == 'Y') {
-		    		   System.out.println("Type the book's Author : ");
-		    		   String author = input.next();
-		    		   this.setAuthor(author);
-		    		   break;
-		    	   }
-		    	   else if (answer == 'n' || answer == 'N') {
-		    		   this.setAuthor("");
-		    		   break;
-		    	   }
-		    	   else {
-		    	   
-		       }
-		       }
-		       System.out.println("Type the book's Publisher : ");
-		       String publisher = input.next();
-		       this.setPublisher(publisher);
+			   setBookTitle(input);
+			   checkAuthorKnown(input);
+		       setBookPublisher(input);
 		       
 		       System.out.println("Type the Romance's Type ");
 		       System.out.println("1 : Historical Romance 2 : Contemporary Romance 3 : Paranormal Romance");
-		       RomanceType = input.nextInt();
-		       switch (RomanceType){
-		       case 1 :
-		    	   type = "Historical Romance";
-		    	   break;
-		       case 2 :
-		    	   type = "Contemporary Romance";
-		    	   break;
-		       case 3 :
-		    	   type = "Paranormal Romance";
-		    	   break;
-		       default :
+		       int romanceType = 0;
+		       boolean isValidInput = false;
+
+		       while (!isValidInput) {
+		           try {
+		               romanceType = input.nextInt();
+
+		               switch (romanceType) {
+		                   case 1:
+		                       type = "Historical Romance";
+		                       isValidInput = true;
+		                       break;
+		                   case 2:
+		                       type = "Contemporary Romance";
+		                       isValidInput = true;
+		                       break;
+		                   case 3:
+		                       type = "Paranormal Romance";
+		                       isValidInput = true;
+		                       break;
+		                   default:
+		                       throw new InputMismatchException();
+		               }
+		           } catch (InputMismatchException e) {
+		               System.out.println("Invalid input. Please enter a value between 1 and 3.");
+		               continue; // Restart the loop to receive input again
+		           }
 		       }
 		       
-		       System.out.println("Type the book's Id : ");
-		       int bookId = input.nextInt();
-		       this.setBookId(bookId);
+		       setBookId(input);
 	   
 		   }
 		 public void printInfo() {
-			   String skind = "none";
-			   switch(this.kind) {
-			   case Romance :
-				   skind = "Romance";
-				   break;
-			   case Fiction :
-				   skind = "Fiction";
-				   break;
-			   
-			   case Thriller :
-				   skind = "Thriller";
-				   break;
-				   
-			   case FairyTale :
-				   skind = "FairyTale";
-				   break;
-			   default :
-				   
-			   }
+			   String skind = getKindString();
 		       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tRomance's Type : " +type + "\tBookId : "+BookId+"}");
-			   }	
+			   }
 	}

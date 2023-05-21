@@ -1,84 +1,58 @@
 package Book;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FairyTale extends Book implements BookInput{
+public class FairyTale extends Book{
 	   int FairyTaleType;
 	   String type;
 	   public FairyTale(BookKind kind) {
 		   this.kind = kind;
-	   }
-	   
+	   }	   
 	public void getUserInput(Scanner input) {
+		   setBookTitle(input);
+	       checkAuthorKnown(input);
+           setBookPublisher(input);
+           System.out.println("Type the FairyTale's Type ");
+           System.out.println("1 : Folktale 2 : Original Fairytales");
 
-		   System.out.println("Type the book's Title : ");
-	       String title = input.next();
-	       this.setTitle(title);
-	       
-	       char answer = 'x';
-	       while(answer !=  'y' && answer != 'Y' && answer !=  'n' && answer != 'N') 
-	       {
-	    	   System.out.println("Is the author of this book known? (Y/N)");
-	    	   answer = input.next().charAt(0);
-	    	   if(answer == 'y' || answer == 'Y') {
-	    		   System.out.println("Type the book's Author : ");
-	    		   String author = input.next();
-	    		   this.setAuthor(author);
-	    		   break;
-	    	   }
-	    	   else if (answer == 'n' || answer == 'N') {
-	    		   this.setAuthor("");
-	    		   break;
-	    	   }
-	    	   else {
-	    	   
-	       }
-	       }
+           int fairyTaleType = 0;
+           boolean isValidInput = false;
 
-	       System.out.println("Type the book's Publisher : ");
-	       String publisher = input.next();
-	       this.setPublisher(publisher);
+           while (!isValidInput) {
+               try {
+                   fairyTaleType = input.nextInt();
+
+                   switch (fairyTaleType) {
+                       case 1:
+                           type = "FolkTale";
+                           isValidInput = true;
+                           break;
+                       case 2:
+                           type = "Original Fairytales";
+                           isValidInput = true;
+                           break;
+                       default:
+                           System.out.println("Invalid input. Please enter a value between 1 and 2.");
+                           break;
+                   }
+               } catch (InputMismatchException e) {
+                   System.out.println("Invalid input. Please enter a valid integer.");
+                   input.nextLine(); // Clear the input buffer
+                   continue;
+               }
+           }
+
+
 	       
-	       System.out.println("Type the FairyTale's Type ");
-	       System.out.println("1 : Folktale 2 : Original Fairytales");
-	       FairyTaleType = input.nextInt();
-	       switch (FairyTaleType){
-	       case 1 :
-	    	   type = "Forktale";
-	    	   break;
-	       case 2 :
-	    	   type = "Original Fairytales";
-	    	   break;
-	       default :
-	       }
-	       
-	       System.out.println("Type the book's Id : ");
-	       int bookId = input.nextInt();
-	       this.setBookId(bookId);
+	       setBookId(input);
 	       
 
 	     }
 	  public void printInfo() {
-		   String skind = "none";
-		   switch(this.kind) {
-		   case Romance :
-			   skind = "Romance";
-			   break;
-		   case Fiction :
-			   skind = "Fiction";
-			   break;
-		   
-		   case Thriller :
-			   skind = "Thriller";
-			   break;
-			   
-		   case FairyTale :
-			   skind = "FairyTale";
-			   break;
-		   default :
-			   
-		   }
+		   String skind = getKindString();
 	       System.out.println("Book{Kind : "+ skind +"\tTitle : " + Title +"\tAuthor : "+ Author+"\tPublisher : "+ Publisher+"\tFairyTale's Type : " +type + "\tBookId : "+BookId+"}");
-		   }	 
-	   }
+		   }
+
+	 }
 
